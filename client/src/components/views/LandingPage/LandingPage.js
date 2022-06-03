@@ -61,7 +61,7 @@ function LandingPage() {
         const windowBottom = windowHeight + window.pageYOffset;
         if (windowBottom >= docHeight - 1) {
 
-            // loadMoreItems()
+            loadMoreItems()
             // console.log('clicked')
             buttonRef.current.click();
 
