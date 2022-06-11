@@ -1,0 +1,14 @@
+.dataResult{
+    color: white;
+    margin-top: 5px;
+    box-shadow: black;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.searchmovie {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: auto;
+    justify-content: space-evenly;
+    /* justify-content: space-around; */
+}

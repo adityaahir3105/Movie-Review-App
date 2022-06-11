@@ -18,9 +18,6 @@ function LikeDislikes(props) {
         variable = { commentId: props.commentId, userId: props.userId }
     }
 
-    
-
-
     useEffect(() => {
 
         Axios.post('/api/like/getLikes', variable)
@@ -161,21 +158,22 @@ function LikeDislikes(props) {
         <React.Fragment>
             <span key="comment-basic-like">
                 <Tooltip title="Like">
-                    <Icon type="like"
+                    <Icon style={{color:"white"}} type="like"
                         theme={LikeAction === 'liked' ? 'filled' : 'outlined'}
                         onClick={onLike} />
                 </Tooltip>
-                <span style={{ paddingLeft: '8px', cursor: 'auto' }}>{Likes}</span>
+                <span style={{ color:"white",paddingLeft: '8px', cursor: 'auto' }}>{Likes}</span>
             </span>&nbsp;&nbsp;&nbsp;&nbsp;
             <span key="comment-basic-dislike">
                 <Tooltip title="Dislike">
                     <Icon
+                        style={{color:"white"}}
                         type="dislike"
                         theme={DislikeAction === 'disliked' ? 'filled' : 'outlined'}
                         onClick={onDisLike}
                     />
                 </Tooltip>
-                <span style={{ paddingLeft: '8px', cursor: 'auto' }}>{Dislikes}</span>
+                <span style={{ color:"white",paddingLeft: '8px', cursor: 'auto' }}>{Dislikes}</span>
             </span>
         </React.Fragment>
     )

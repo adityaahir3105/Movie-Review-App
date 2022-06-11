@@ -4,6 +4,7 @@ import axios from 'axios';
 import './favorite.css';
 import { useSelector } from 'react-redux';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../Config'
+import { Link } from 'react-router-dom';
 
 const { Title } = Typography;
 
@@ -48,10 +49,10 @@ function FavoritePage() {
             })
     }
 
-
+   
     const renderCards = Favorites.map((favorite, index) => {
 
-
+        
         const content = (
             <div>
                 {favorite.moviePost ?
@@ -65,24 +66,23 @@ function FavoritePage() {
             <Popover content={content} title={`${favorite.movieTitle}`}>
                 <td>{favorite.movieTitle}</td>
             </Popover>
-
-            <td>{favorite.movieRunTime} mins</td>
-            <td><button onClick={() => onClickDelete(favorite.movieId, favorite.userFrom)}> Remove </button></td>
+            <td>{Math.floor(favorite.movieRunTime/60)}h {Math.floor(favorite.movieRunTime)%60}m</td>
+            <td><button style={{color:"black"}} onClick={() => onClickDelete(favorite.movieId, favorite.userFrom)}> Remove </button></td>
         </tr>
     })
 
     return (
         <div style={{ width: '85%', margin: '3rem auto' }}>
-            <Title level={2} > Favorite Movies By Me </Title>
+            <Title style={{color:"white"}} level={2} > Favorite Movies By Me </Title>
             <hr />
             {user.userData && !user.userData.isAuth ?
                 <div style={{ width: '100%', fontSize: '2rem', height: '500px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                     <p>Please Log in first...</p>
-                    <a href="/login">Go to Login page</a>
+                    <Link to="/login">Go to Login page</Link>
                 </div>
                 :
                 !Loading &&
-                <table>
+                <table >
                     <thead>
                         <tr>
                             <th>Movie Title</th>

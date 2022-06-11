@@ -10,7 +10,6 @@ import MainImage from '../../views/LandingPage/Sections/MainImage';
 import MovieInfo from './Sections/MovieInfo';
 import Favorite from './Sections/Favorite';
 function MovieDetailPage(props) {
-    // console.log(props)
     const movieId = props.match.params.movieId
     const [Movie, setMovie] = useState([])
     const [Casts, setCasts] = useState([])
@@ -80,6 +79,7 @@ function MovieDetailPage(props) {
                     title={Movie.original_title}
                     text={Movie.overview}
                     id={Movie.id}
+ 
                 />
                 :
                 <div>loading...</div>
@@ -96,7 +96,7 @@ function MovieDetailPage(props) {
 
                 {/* Movie Info */}
                 {!LoadingForMovie ?
-                    <MovieInfo movie={Movie} />
+                    <MovieInfo movie={Movie}/>
                     :
                     <div>loading...</div>
                 }
@@ -113,7 +113,7 @@ function MovieDetailPage(props) {
                         {
                             !LoadingForCasts ? Casts.map((cast, index) => (
                                 cast.profile_path &&
-                                <GridCards actor image={cast.profile_path} characterName={cast.characterName} characterId={cast.id}/>
+                                <GridCards actor movieId={movieId} image={cast.profile_path} characterName={cast.characterName} characterId={cast.id}/>
                             )) :
                                 <div>loading...</div>
                         }

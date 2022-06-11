@@ -6,9 +6,9 @@ function Footer() {
         <div style={{
             height: '80px', display: 'flex',
             flexDirection: 'column', alignItems: 'center',
-            justifyContent: 'center', fontSize:'1rem'
+            justifyContent: 'center', fontSize:'1rem',backgroundColor:"#2d313a"
         }}>
-           <p> Crated By: Aditya Ahir <Icon type="smile" /></p>
+           <p style={{color:"white"}}> Crated By: Aditya Ahir <Icon type="smile" /></p>
         </div>
     )
 }

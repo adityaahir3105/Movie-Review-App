@@ -5,6 +5,7 @@ import axios from 'axios';
 import { USER_SERVER } from '../../../Config';
 import { withRouter } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import {Link} from "react-router-dom";
 // import { Switch } from 'antd';
 // const Upload = require('../../../../assets/images/upload.png');
 
@@ -40,13 +41,13 @@ function RightMenu(props) {
   if (user.userData && !user.userData.isAuth) {
     return (
       
-      <Menu mode={props.mode}>
+      <Menu style={{backgroundColor:"#39445a"}} mode={props.mode}>
   
         <Menu.Item key="mail">
-          <a href="/login">Signin</a>
+          <Link style={{color:"white"}} to="/login">Signin</Link>
         </Menu.Item>
         <Menu.Item key="app">
-          <a href="/register">Signup</a>
+          <Link style={{color:"white"}} to="/register">Signup</Link>
         </Menu.Item>
       </Menu>
     )
@@ -56,8 +57,8 @@ function RightMenu(props) {
         {/* <Menu.Item key="theme">
         <Switch onClick={onChange}>SetTheme</Switch>
         </Menu.Item> */}
-        <Menu.Item key="logout">
-          <a onClick={logoutHandler}>Logout</a>
+        <Menu.Item key="logout" style={{backgroundColor:"#39445a"}}>
+          <a style={{color:"white"}} onClick={logoutHandler}>Logout</a>
         </Menu.Item>
       </Menu>
     )

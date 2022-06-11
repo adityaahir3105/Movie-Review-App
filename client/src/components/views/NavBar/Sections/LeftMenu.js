@@ -1,24 +1,23 @@
 import React from 'react';
 import { Menu } from 'antd';
-
+import {NavLink} from 'react-router-dom'
+import "./LeftMenu.css";
 
 function LeftMenu(props) {
+
   return (
-    <Menu mode={props.mode}>
-      <Menu.Item key="favorite">
-        <a href="/favorite">Favorite</a>
+    <Menu style={{backgroundColor:"#39445a"}} mode={props.mode}>
+      <Menu.Item  key="favorite">
+        <NavLink style={{color:"white"}} activeClassName="isActive" to="/favorite">Favorite</NavLink>
+      </Menu.Item> 
+      <Menu.Item key="Latest Movie">
+        <NavLink exact style={{color:"white"}} activeClassName="isActive" to="/">Latest Movies</NavLink>
       </Menu.Item>
-      <Menu.Item key="Popular Movie">
-        <a href="/">Popular Movie</a>
-      </Menu.Item>
-      <Menu.Item key="Top Movie">
-        <a href="/toprate">Top Movies</a>
-      </Menu.Item>
-      <Menu.Item key="Up Coming">
-        <a href="/upcoming">Latest Movies</a>
+      <Menu.Item key="Movies">
+        <NavLink exact style={{color:"white"}} activeClassName="isActive" to="/movies">Movies</NavLink>
       </Menu.Item>
       <Menu.Item key="Search">
-        <a href="/search">Search</a>
+        <NavLink style={{color:"white"}} activeClassName="isActive" to="/search">Search</NavLink>
       </Menu.Item>    
     </Menu>
   )

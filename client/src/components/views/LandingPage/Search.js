@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Row} from 'antd';
-import { API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE, POSTER_SIZE } from '../../Config'
+import { API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE } from '../../Config'
 import MainImage from './Sections/MainImage'
-import GridCard from '../../commons/GridCards'
-// import Search from 'antd/lib/input/Search';
 import { Input} from 'antd';
-// const { Title } = Typography;
+import "./search.css";
+import SingleContent from '../SingleContent/SingleContent';
+
+
 const { Search } = Input;
 function SearchMovie() {
     const buttonRef = useRef(null);
@@ -17,8 +17,6 @@ function SearchMovie() {
     const [searchText, setSearchText] = useState("");
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
-
-    // console.log(searchText)
     useEffect(() => {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
         fetchMoviesNames(endpoint)
@@ -28,23 +26,13 @@ function SearchMovie() {
         fetch(endpoint)
             .then(result => result.json())
             .then(result => {
-                // console.log(result)
-                // console.log('Movies',...Movies)
-                // console.log('result',...result.results)
                 setMoviesNames(result.results)
             }, setLoading(false))
             .catch(error => console.error('Error:', error)
             )
     }
-    // useEffect(() => {
-    //     window.addEventListener("scroll", handleScroll);
-    // }, [])
 
     const searchMovie=()=>{
-        // setMovies([]);
-        // console.log(...Movies)
-        // setSearchText(wordEntered);
-        // console.log(searchText);
         setFilteredData([]);
         let endpoint = '';
         endpoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${searchText}`;
@@ -56,7 +44,7 @@ function SearchMovie() {
         fetch(endpoint)
             .then(result => result.json())
             .then(result => {
-                // console.log(result)
+                console.log(result)
                 // console.log('Movies',...Movies)
                 // console.log('result',...result.results)
                 setMovies(result.results)
@@ -75,20 +63,20 @@ function SearchMovie() {
         fetchMovies(endpoint);
     }
 
-    // const handleScroll = () => {
-    //     const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
-    //     const body = document.body;
-    //     const html = document.documentElement;
-    //     const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-    //     const windowBottom = windowHeight + window.pageYOffset;
-    //     if (windowBottom >= docHeight - 1) {
+    const handleScroll = () => {
+        const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+        const body = document.body;
+        const html = document.documentElement;
+        const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+        const windowBottom = windowHeight + window.pageYOffset;
+        if (windowBottom >= docHeight - 1) {
 
-    //         // loadMoreItems()
-    //         console.log('clicked')
-    //         buttonRef.current.click();
+            // loadMoreItems()
+            // console.log('clicked')
+            buttonRef.current.click();
 
-    //     }
-    // }
+        }
+    }
    
     const handleFilter = (event) => {
         setSearchText(event.target.value)
@@ -108,6 +96,7 @@ function SearchMovie() {
     //     setFilteredData([]);
     //     setWordEntered("");
     //   };
+    // console.log(filteredData)
     return (
         <>
         <div style={{display:'flex',justifyContent:'center',marginTop:'10px'}}>
@@ -118,10 +107,10 @@ function SearchMovie() {
         onSearch={searchMovie}  
         />
         {filteredData.length !== 0 && (
-        <div className="dataResult" style={{marginTop:"5px",boxShadow:"black",overflow:"hidden",overflowY:'auto'}}>
-          {filteredData.slice(0, 15).map((value, key) => {
+        <div className="dataResult" >
+          {filteredData.slice(0,5).map((value, key) => {
             return (
-              <div className="dataItem" key={key}>
+              <div key={key}>
                 <p onClick={()=>{setWordEntered(value.title)
                                 setSearchText(value.title)}}>{value.title}</p>
               </div>
@@ -144,27 +133,27 @@ function SearchMovie() {
 
             <div style={{ width: '85%', margin: '1rem auto' }}>
                 <hr />
-                <Row gutter={[16, 16]}>
-                    {Movies && Movies.map((movie, index) => (
-                        <React.Fragment key={index}>
-                            <GridCard
-                                image={movie.poster_path ?
-                                    `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
-                                    : null}
-                                movieId={movie.id}
-                                movieName={movie.original_title}
-                            />
-                        </React.Fragment>
-                    ))}
-                </Row>
+                <div className="searchmovie">
+                    {Movies &&
+                        Movies.map((c) => (
+                        <SingleContent
+                        key={c.id}
+                        id={c.id}
+                        poster={c.poster_path}
+                        title={c.title || c.name}
+                        date={c.first_air_date || c.release_date}
+                        vote_average={c.vote_average}
+                        />
+                        ))}
+                </div>
 
                 {Loading &&
-                    <div>Loading...</div>}
+                    <div style={{color:"#39445a"}}>Loading...</div>}
 
-                <br />
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <div ref={buttonRef} className="loadMore" onClick={loadMoreItems}></div>
-                </div>
+                {/* <br style={}/> */}
+                {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <div ref={buttonRef} className="loadMore" onClick={loadMoreItems}>Load</div>
+                </div> */}
             </div>
 
         </div>

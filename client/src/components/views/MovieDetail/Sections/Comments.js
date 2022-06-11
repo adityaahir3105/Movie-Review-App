@@ -4,16 +4,15 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import SingleComment from './SingleComment';
 import ReplyComment from './ReplyComment';
+
 const { TextArea } = Input;
 const { Title } = Typography;
 function Comments(props) {
     const user = useSelector(state => state.user)
     const [Comment, setComment] = useState("")
-
     const handleChange = (e) => {
         setComment(e.currentTarget.value)
     }
-
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -42,7 +41,7 @@ function Comments(props) {
     return (
         <div>
             <br />
-            <Title level={3} > Share your opinions about {props.movieTitle} </Title>
+            <Title style={{color:"white"}} level={3} > Share your opinions about {props.movieTitle} </Title>
             <hr />
             {/* Comment Lists  */}
             {/* {console.log(props.CommentLists)} */}
