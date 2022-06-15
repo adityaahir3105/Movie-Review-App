@@ -64,8 +64,8 @@ export default function TransitionsModal({ children, id }) {
     const { data } = await axios.get(
       `${API_URL}movie/${id}/videos?api_key=${API_KEY}&language=en-US`
     );
-
-    setVideo(data.results[0]);
+    const trailer=data.results.find(vid=>vid.name==="Official Trailer")
+    setVideo(trailer? trailer:data.results[0]);
   };
   // console.log(video);
   // console.log(video.key);
