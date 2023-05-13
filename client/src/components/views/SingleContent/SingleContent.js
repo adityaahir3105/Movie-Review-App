@@ -3,7 +3,6 @@ import { Badge } from "@material-ui/core";
 import { img_300, unavailable } from "../../Config";
 import "./SingleContent.css";
 import ContentModal from "../ContentModal/ContentModal";
-import { Row,Col } from "antd";
 
 const SingleContent = ({
   id,

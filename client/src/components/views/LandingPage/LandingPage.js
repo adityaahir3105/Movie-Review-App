@@ -18,11 +18,15 @@ function Landing() {
     useEffect(() => {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
         fetchMovies(endpoint)
-    }, [])
+    },
+    // eslint-disable-next-line 
+    [])
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
-    }, [])
+    }, 
+    // eslint-disable-next-line
+    [])
 
 
     const fetchMovies = (endpoint) => {

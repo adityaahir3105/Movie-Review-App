@@ -21,7 +21,9 @@ function Movies() {
 
     useEffect(() => {
         fetchMovies();
-      }, [genreforURL, page]);
+      },
+      // eslint-disable-next-line 
+      [genreforURL, page]);
 
     const fetchMovies = async () => {
         const { data } = await axios.get(

@@ -75,7 +75,9 @@ function Favorite(props) {
                 }
             })
 
-    }, [])
+    }, 
+    // eslint-disable-next-line
+    [])
 
 
     return (

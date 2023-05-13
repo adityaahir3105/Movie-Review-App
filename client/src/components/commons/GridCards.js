@@ -2,12 +2,12 @@ import React,{useState} from 'react'
 import {  Col} from 'antd';
 import { IMAGE_BASE_URL } from '../Config';
 import { Link } from 'react-router-dom';
-import { Button } from 'antd';
 
 
 function GridCards(props) {
 
     let { actor,actorinfo, key, image, movieId, movieName, characterName, characterId } = props
+    // eslint-disable-next-line
     const [isHovering, setIsHovering] = useState(false);
     const handleMouseOver = () => {
         setIsHovering(true);

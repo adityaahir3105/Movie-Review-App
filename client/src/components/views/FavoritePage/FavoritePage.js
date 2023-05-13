@@ -17,7 +17,9 @@ function FavoritePage() {
 
     useEffect(() => {
         fetchFavoredMovie()
-    }, [])
+    },
+    // eslint-disable-next-line 
+    [])
 
     const fetchFavoredMovie = () => {
         axios.post('/api/favorite/getFavoredMovie', variable)

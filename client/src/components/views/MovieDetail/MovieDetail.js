@@ -37,7 +37,9 @@ function MovieDetailPage(props) {
                 }
             })
 
-    }, [])
+    },
+    // eslint-disable-next-line 
+    [])
 
     const toggleActorView = () => {
         setActorToggle(!ActorToggle)

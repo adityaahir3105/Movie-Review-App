@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE } from '../../Config'
 import MainImage from './Sections/MainImage'
 import { Input} from 'antd';
@@ -8,11 +8,11 @@ import SingleContent from '../SingleContent/SingleContent';
 
 const { Search } = Input;
 function SearchMovie() {
-    const buttonRef = useRef(null);
     const [Movies, setMovies] = useState([])
     const [MoviesName, setMoviesNames] = useState([])
     const [MainMovieImage, setMainMovieImage] = useState(null)
     const [Loading, setLoading] = useState(true)
+    // eslint-disable-next-line
     const [CurrentPage, setCurrentPage] = useState(0)
     const [searchText, setSearchText] = useState("");
     const [filteredData, setFilteredData] = useState([]);
@@ -53,29 +53,6 @@ function SearchMovie() {
             }, setLoading(false))
             .catch(error => console.error('Error:', error)
             )
-    }
-
-    const loadMoreItems = () => {
-        let endpoint = '';
-        setLoading(true)
-        // console.log('CurrentPage', CurrentPage)
-        endpoint = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${searchText}&page=${CurrentPage + 1}`;
-        fetchMovies(endpoint);
-    }
-
-    const handleScroll = () => {
-        const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
-        const body = document.body;
-        const html = document.documentElement;
-        const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-        const windowBottom = windowHeight + window.pageYOffset;
-        if (windowBottom >= docHeight - 1) {
-
-            // loadMoreItems()
-            // console.log('clicked')
-            buttonRef.current.click();
-
-        }
     }
    
     const handleFilter = (event) => {
