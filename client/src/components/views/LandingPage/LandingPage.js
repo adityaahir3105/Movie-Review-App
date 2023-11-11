@@ -56,10 +56,11 @@ function Landing() {
         const html = document.documentElement;
         const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
         const windowBottom = windowHeight + window.pageYOffset;
-        if (windowBottom >= docHeight - 1) {
-            buttonRef.current.click();
-
-        }
+        window.onscroll = function(ev) {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight && buttonRef!==null && buttonRef.current!==null) {
+                buttonRef.current.click();
+            }
+        };        
     }
 
     return (
