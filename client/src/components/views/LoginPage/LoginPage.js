@@ -80,7 +80,7 @@ function LoginPage(props) {
           <div className="app">
 
             <Title style={{color:"white"}} level={2}>Log In</Title>
-            <form onSubmit={handleSubmit} style={{ width: '350px' }}>
+            <form onSubmit={handleSubmit} style={{ maxWidth: '350px' }}>
 
               <Form.Item required>
                 <Input
